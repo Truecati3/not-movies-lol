@@ -1,0 +1,778 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#09090f;--s1:#111119;--s2:#1a1a26;--bd:#222236;--tx:#e0e0ee;--mu:#52526a;--ac:#9d72f8;--ac2:#5e62e8}
+#W{position:relative;height:680px;overflow:hidden;background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;font-size:13px;display:flex;flex-direction:column}
+.scr{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;z-index:15;background:var(--bg)}
+.scr.v{display:flex}
+#sA{z-index:5;flex-direction:row!important;align-items:stretch!important;justify-content:flex-start!important}
+input[type=password],input[type=text],select{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:8px 12px;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border-color .15s}
+input:focus,select:focus{border-color:var(--ac)}
+.btn{background:var(--ac);color:#09090f;border:none;border-radius:8px;padding:9px 16px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:13px;cursor:pointer;width:100%;transition:opacity .15s}
+.btn:hover{opacity:.85}
+.btn2{background:var(--s2);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:9px 16px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:13px;cursor:pointer;width:100%;transition:all .15s}
+.btn2:hover{border-color:var(--ac2);color:var(--ac2)}
+.err{color:#f87171;font-size:11px;text-align:center;min-height:14px}
+.ok{color:#34d399;font-size:11px;text-align:center;min-height:14px}
+.spin{width:26px;height:26px;border:2px solid var(--bd);border-top-color:var(--ac);border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+#SB{width:210px;min-width:210px;background:var(--s1);border-right:1px solid var(--bd);display:flex;flex-direction:column;height:100%}
+.sbh{padding:12px 13px 10px;border-bottom:1px solid var(--bd)}
+.sbh h1{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.05em}
+.sbh h1 em{font-style:normal;color:var(--ac)}
+.libid-row{display:flex;align-items:center;gap:5px;margin-top:6px}
+.libid-badge{font-size:10px;color:var(--mu);background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:3px 7px;font-family:monospace;letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:120px;flex:1}
+.icon-btn{background:transparent;border:1px solid var(--bd);border-radius:5px;padding:3px 5px;cursor:pointer;color:var(--mu);display:flex;align-items:center;transition:all .15s;flex-shrink:0}
+.icon-btn:hover{border-color:var(--ac);color:var(--ac)}
+.icon-btn svg{width:11px;height:11px}
+.nsec{padding:10px 9px 3px;font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.1em}
+.ni{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:6px;cursor:pointer;color:var(--mu);transition:all .15s;margin:1px 5px;font-size:12px;user-select:none}
+.ni:hover{background:var(--s2);color:var(--tx)}
+.ni.on{background:rgba(157,114,248,.12);color:var(--ac)}
+.ni svg{width:12px;height:12px;flex-shrink:0}
+.sbbot{margin-top:auto;padding:9px;border-top:1px solid var(--bd);display:flex;flex-direction:column;gap:5px}
+#lockSt{font-size:10px;color:var(--mu);text-align:center;padding:1px 0}
+#lockSt.un{color:#34d399}
+.ubtn{width:100%;padding:7px;background:var(--ac);color:#09090f;border:none;border-radius:7px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:opacity .15s}
+.ubtn:hover{opacity:.85}
+.sbtn{width:100%;padding:6px;background:transparent;color:var(--mu);border:1px solid var(--bd);border-radius:7px;font-family:'DM Sans',sans-serif;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .15s}
+.sbtn:hover{border-color:var(--ac2);color:var(--ac2)}
+
+#MN{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+#TB{padding:9px 12px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:7px;background:var(--s1);flex-shrink:0}
+.srw{flex:1;position:relative;max-width:250px}
+.sri{padding-left:28px!important}
+.sric{position:absolute;left:8px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--mu)}
+.pills{display:flex;gap:3px}
+.pill{padding:4px 8px;border-radius:20px;border:1px solid var(--bd);background:transparent;color:var(--mu);font-family:'DM Sans',sans-serif;font-size:11px;cursor:pointer;transition:all .15s}
+.pill:hover{border-color:var(--ac2);color:var(--tx)}
+.pill.on{border-color:var(--ac);background:rgba(157,114,248,.1);color:var(--ac)}
+.vtog{display:flex;gap:2px;margin-left:auto}
+.vb{background:transparent;border:1px solid var(--bd);border-radius:5px;padding:4px 5px;cursor:pointer;color:var(--mu);transition:all .15s;display:flex}
+.vb.on{border-color:var(--ac2);color:var(--ac2)}
+#CT{flex:1;overflow-y:auto;padding:12px}
+#CT::-webkit-scrollbar{width:3px}
+#CT::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
+.shdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.shdr h2{font-family:'Bebas Neue',sans-serif;font-size:18px}
+.shdr span{font-size:11px;color:var(--mu)}
+.srow{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:12px}
+.stc{background:var(--s1);border:1px solid var(--bd);border-radius:7px;padding:7px 10px}
+.sv{font-family:'Bebas Neue',sans-serif;font-size:17px}
+.sl{font-size:10px;color:var(--mu);margin-top:1px}
+.frow{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.fc{background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:7px 11px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s;user-select:none}
+.fc:hover{border-color:var(--ac2)}
+.fc.on{border-color:var(--ac);background:rgba(157,114,248,.07)}
+.fc .fn{font-size:12px;font-weight:500}
+.fc .fct{font-size:10px;color:var(--mu);margin-top:1px}
+.fadd{background:transparent;border:1px dashed var(--bd);color:var(--mu);border-radius:8px;padding:7px 11px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:11px;display:flex;align-items:center;gap:4px;transition:all .15s}
+.fadd:hover{border-color:var(--ac2);color:var(--ac2)}
+.dz{border:2px dashed var(--bd);border-radius:10px;padding:24px 16px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:12px;display:none}
+.dz.v{display:block}
+.dz:hover,.dz.ov{border-color:var(--ac);background:rgba(157,114,248,.03)}
+.dz p{color:var(--mu);font-size:11px;margin-top:5px}
+.dz strong{color:var(--ac)}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}
+.vc{background:var(--s1);border:1px solid var(--bd);border-radius:8px;overflow:hidden;cursor:pointer;transition:all .18s}
+.vc:hover{border-color:var(--ac2);transform:translateY(-2px);background:var(--s2)}
+.vc:hover .pov{opacity:1}
+.th{width:100%;aspect-ratio:16/9;background:var(--s2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.tgb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.tl{font-family:'Bebas Neue',sans-serif;font-size:22px;opacity:.07;letter-spacing:.05em;color:var(--tx)}
+.pov{position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s}
+.pc{width:34px;height:34px;background:rgba(157,114,248,.85);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.dur{position:absolute;bottom:4px;right:4px;background:rgba(0,0,0,.72);color:#fff;font-size:10px;padding:2px 4px;border-radius:3px}
+.vttype{position:absolute;top:4px;left:4px;background:rgba(0,0,0,.55);color:var(--mu);font-size:9px;padding:2px 5px;border-radius:3px;text-transform:uppercase}
+.cb{padding:7px 9px}
+.ct{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cm{display:flex;align-items:center;justify-content:space-between;margin-top:3px}
+.cs{font-size:10px;color:var(--mu)}
+.cdt{font-size:10px;color:var(--mu);margin-top:2px}
+.tag{font-size:10px;padding:2px 6px;border-radius:9px}
+.tP{background:rgba(157,114,248,.15);color:#9d72f8}
+.tB{background:rgba(94,98,232,.15);color:#5e62e8}
+.tG{background:rgba(52,211,153,.15);color:#34d399}
+.tA{background:rgba(251,191,36,.15);color:#fbbf24}
+.tM{background:rgba(82,82,106,.15);color:#8888a8}
+.vl{display:flex;flex-direction:column;gap:3px}
+.vli{background:var(--s1);border:1px solid var(--bd);border-radius:7px;display:flex;align-items:center;gap:9px;padding:7px 10px;cursor:pointer;transition:all .15s}
+.vli:hover{border-color:var(--ac2);background:var(--s2)}
+.lth{width:50px;height:32px;border-radius:4px;background:var(--s2);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ln{flex:1;font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lf{min-width:70px}
+.ld{font-size:10px;color:var(--mu);min-width:40px;text-align:right}
+.lsz{font-size:10px;color:var(--mu);min-width:48px;text-align:right}
+.mb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:100}
+.mb.v{display:flex}
+.mx{background:var(--s1);border:1px solid var(--bd);border-radius:11px;overflow:hidden;width:88%;max-width:390px}
+.mh{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--bd)}
+.mt{font-size:13px;font-weight:500}
+.xb{background:transparent;border:none;cursor:pointer;color:var(--mu);padding:3px;border-radius:4px;display:flex;line-height:1;transition:color .15s}
+.xb:hover{color:var(--tx)}
+.mbd{padding:14px;display:flex;flex-direction:column;gap:9px}
+label{font-size:11px;color:var(--mu);display:block;margin-bottom:3px}
+.pb{background:#000;border:1px solid var(--bd);border-radius:11px;overflow:hidden;width:92%;max-width:720px}
+.pf{padding:9px 14px;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;background:var(--s1)}
+.pn{font-size:13px;font-weight:500}
+.dbtn{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.2);color:#f87171;border-radius:5px;padding:4px 10px;font-family:'DM Sans',sans-serif;font-size:11px;cursor:pointer;transition:all .15s}
+.dbtn:hover{background:rgba(248,113,113,.2)}
+.dbtn.conf{background:rgba(248,113,113,.28);border-color:rgba(248,113,113,.6)}
+.emp{text-align:center;padding:40px 16px;color:var(--mu)}
+.emp h3{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--tx);margin-bottom:4px}
+.emp p{font-size:12px;line-height:1.5}
+.progbar{height:3px;background:var(--bd);border-radius:2px;overflow:hidden}
+.progfill{height:100%;background:var(--ac);width:0%;transition:width .3s}
+#pVid{width:100%;aspect-ratio:16/9;background:#000;display:block;max-height:55vh}
+.ro-banner{background:rgba(94,98,232,.08);border-bottom:1px solid rgba(94,98,232,.2);padding:7px 14px;font-size:11px;color:var(--ac2);display:flex;align-items:center;gap:6px;flex-shrink:0}
+.share-url-box{background:var(--bg);border:1px solid var(--bd);border-radius:7px;padding:8px 11px;font-family:monospace;font-size:11px;color:var(--mu);word-break:break-all;line-height:1.5}
+.divider{border:none;border-top:1px solid var(--bd);margin:2px 0}
+</style>
+
+<div id="W">
+  <!-- Loading -->
+  <div class="scr v" id="sL">
+    <div class="spin"></div>
+    <p style="color:var(--mu);font-size:11px;margin-top:4px">Loading library...</p>
+  </div>
+
+  <!-- First-time setup -->
+  <div class="scr" id="sS">
+    <div style="width:285px">
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.06em;text-align:center;margin-bottom:4px">REEL<span style="color:var(--ac)">LIB</span></h2>
+      <p style="color:var(--mu);font-size:11px;line-height:1.7;text-align:center;margin-bottom:16px">First-time setup. Create a password to protect uploads.</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <input type="password" id="sPw" placeholder="Choose a password" onkeydown="if(event.key==='Enter')document.getElementById('sPw2').focus()">
+        <input type="password" id="sPw2" placeholder="Confirm password" onkeydown="if(event.key==='Enter')doSetup()">
+        <button class="btn" onclick="doSetup()">Create My Library</button>
+        <hr class="divider">
+        <p style="font-size:11px;color:var(--mu);text-align:center">Have a library code?</p>
+        <input type="text" id="joinCode" placeholder="Enter library code to view" style="text-align:center;font-family:monospace;letter-spacing:.05em">
+        <button class="btn2" onclick="joinLibrary()">View That Library</button>
+        <div class="err" id="sErr"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main app -->
+  <div class="scr" id="sA">
+    <!-- Read-only banner -->
+    <div class="ro-banner" id="roBanner" style="display:none;position:absolute;top:0;left:0;right:0;z-index:10">
+      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      Viewing <strong id="roLibId" style="font-family:monospace"></strong> — read-only
+      <button onclick="exitReadOnly()" style="margin-left:auto;background:transparent;border:1px solid var(--ac2);border-radius:5px;color:var(--ac2);font-family:'DM Sans',sans-serif;font-size:10px;padding:2px 8px;cursor:pointer">← My Library</button>
+    </div>
+
+    <div id="SB">
+      <div class="sbh">
+        <h1>REEL<em>LIB</em></h1>
+        <div class="libid-row">
+          <span class="libid-badge" id="libIdBadge" title="Your library ID">—</span>
+          <button class="icon-btn" onclick="copyLibId()" title="Copy library code">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+          <button class="icon-btn" onclick="showShare()" title="Share library">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="nsec">Library</div>
+      <div class="ni on" onclick="setSec('all',this)">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        All Videos
+      </div>
+      <div class="ni" onclick="setSec('recent',this)">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+        Recent
+      </div>
+      <div class="nsec">Folders</div>
+      <div id="sbFolders"></div>
+      <div class="sbbot">
+        <div id="lockSt">🔒 Upload locked</div>
+        <button class="ubtn" id="uploadBtn" onclick="startUpload()">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+          Upload Video
+        </button>
+        <button class="sbtn" onclick="showShare()">
+          <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share Library
+        </button>
+      </div>
+    </div>
+
+    <div id="MN">
+      <div id="TB">
+        <div class="srw">
+          <svg class="sric" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="srIn" class="sri" placeholder="Search videos..." oninput="render()">
+        </div>
+        <div class="pills">
+          <button class="pill on" onclick="setFilt('all',this)">All</button>
+          <button class="pill" onclick="setFilt('short',this)">Short</button>
+          <button class="pill" onclick="setFilt('long',this)">Long</button>
+        </div>
+        <div class="vtog">
+          <button class="vb on" id="vbG" onclick="setVM('grid')"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></button>
+          <button class="vb" id="vbL" onclick="setVM('list')"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+        </div>
+      </div>
+      <div id="CT">
+        <div class="srow" id="stats"></div>
+        <div class="shdr"><h2 id="secTitle">All Videos</h2><span id="vCnt">0 videos</span></div>
+        <div class="frow" id="fRow"></div>
+        <div class="dz" id="dz" onclick="startUpload()">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#52526a" stroke-width="1.5" style="margin:0 auto"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+          <p>Drop <strong>any video file</strong> here or click to upload</p>
+          <p style="font-size:10px;margin-top:2px;opacity:.55">MP4, MOV, AVI, MKV, WebM and more · Password protected</p>
+        </div>
+        <div id="vCon"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Auth modal -->
+<div class="mb" id="mAuth">
+  <div class="mx">
+    <div class="mh"><span class="mt">🔒 Upload Access</span><button class="xb" onclick="closeM('mAuth')"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="mbd">
+      <p style="color:var(--mu);font-size:11px">Enter your password to enable uploads for this session.</p>
+      <input type="password" id="aPw" placeholder="Password" onkeydown="if(event.key==='Enter')doAuth()">
+      <button class="btn" onclick="doAuth()">Unlock</button>
+      <div class="err" id="aErr"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Upload modal -->
+<div class="mb" id="mUp">
+  <div class="mx">
+    <div class="mh"><span class="mt" id="upTitle">Upload Files</span><button class="xb" onclick="closeM('mUp')"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="mbd">
+      <p style="color:var(--mu);font-size:11px" id="upInfo">—</p>
+      <div><label>Assign to folder</label><select id="upFold"></select></div>
+      <button class="btn" id="upBtn" onclick="confirmUpload()">Add to Library</button>
+      <div id="upProg" style="display:none;margin-top:4px">
+        <div class="progbar"><div class="progfill" id="upBar"></div></div>
+        <p style="font-size:11px;color:var(--mu);margin-top:5px" id="upStat">Processing...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Share modal -->
+<div class="mb" id="mShare">
+  <div class="mx">
+    <div class="mh"><span class="mt">📤 Share Library</span><button class="xb" onclick="closeM('mShare')"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="mbd">
+      <div>
+        <label>Your Library Code</label>
+        <div style="display:flex;gap:6px;align-items:center">
+          <div class="share-url-box" id="shareCodeBox" style="flex:1;font-size:14px;text-align:center;letter-spacing:.08em;color:var(--tx)">—</div>
+          <button class="icon-btn" style="padding:7px 9px" onclick="copyLibId()"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+        </div>
+      </div>
+      <div>
+        <label>Shareable URL</label>
+        <div class="share-url-box" id="shareUrlBox">—</div>
+      </div>
+      <button class="btn" onclick="copyShareUrl()">Copy Link</button>
+      <div class="ok" id="shareOk"></div>
+      <hr class="divider">
+      <p style="font-size:11px;color:var(--mu);line-height:1.6">Anyone with this link can <strong style="color:var(--tx)">browse your library</strong> and see the video list. Video playback requires the files to be on their device — share the files separately if needed.</p>
+      <hr class="divider">
+      <label>View someone else's library</label>
+      <input type="text" id="viewCode" placeholder="Enter their library code" style="font-family:monospace;text-align:center;letter-spacing:.05em">
+      <button class="btn2" onclick="goToLibrary()">Open That Library</button>
+      <div class="err" id="shareErr"></div>
+    </div>
+  </div>
+</div>
+
+<!-- New folder modal -->
+<div class="mb" id="mFold">
+  <div class="mx" style="max-width:300px">
+    <div class="mh"><span class="mt">New Folder</span><button class="xb" onclick="closeM('mFold')"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="mbd">
+      <input type="text" id="foldName" placeholder="Folder name" onkeydown="if(event.key==='Enter')createFolder()">
+      <button class="btn" onclick="createFolder()">Create Folder</button>
+      <div class="err" id="foldErr"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Player modal -->
+<div class="mb" id="mPlay">
+  <div class="pb">
+    <video id="pVid" controls></video>
+    <div class="pf">
+      <div>
+        <div class="pn" id="pName">Video</div>
+        <div style="font-size:10px;color:var(--mu);margin-top:2px" id="pMeta"></div>
+      </div>
+      <button class="dbtn" id="delBtn" onclick="delCurrent()">Delete</button>
+    </div>
+  </div>
+  <button class="xb" onclick="closeM('mPlay')" style="position:fixed;top:12px;right:14px;background:rgba(0,0,0,.75);border-radius:50%;padding:7px;z-index:101">
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+</div>
+
+<input type="file" id="fi" accept="video/*" multiple style="display:none" onchange="handleFiles(this.files)">
+
+<script>
+// Salt as byte array
+const _k=[0x72,0x6c,0x5f,0x76,0x64,0x73,0x74];
+const SALT=_k.map(c=>String.fromCharCode(c)).join('')+'_k2';
+
+const DBNAME='ReelLibDB_v6';
+let db=null;
+let myLibId=null;       // owner's library ID
+let viewingLibId=null;  // null = own library, string = viewing someone else's
+let isReadOnly=false;
+
+let videos=[];
+const urlCache={};
+let folders=['Uncategorized','Work','Personal','Projects','Archive'];
+let unlocked=false,sec='all',filt='all',vm='grid',pending=null,curId=null,delConf=false;
+
+const FTAG={Work:'tP',Personal:'tB',Projects:'tG',Archive:'tA',Uncategorized:'tM'};
+const FICON={Work:'💼',Personal:'🎬',Projects:'🔧',Archive:'📦',Uncategorized:'📁'};
+const BGS=['#1a1a30','#0f1a23','#1c1210','#0d1a14','#1a1220'];
+
+const $=id=>document.getElementById(id);
+const show=(id,d='flex')=>{const e=$(id);if(e){e.style.display=d;e.classList&&e.classList.add('v')}};
+const hide=id=>{const e=$(id);if(e){e.style.display='none';e.classList&&e.classList.remove('v')}};
+const tog=(id,on)=>{const e=$(id);if(e)e.classList.toggle('v',on)};
+
+// ── Persistent storage (window.storage with localStorage fallback) ──
+const stor=window.storage||{
+  get:async(k,sh)=>{try{const v=localStorage.getItem(k);return v!=null?{value:v}:null}catch{return null}},
+  set:async(k,v,sh)=>{try{localStorage.setItem(k,v);return{value:v}}catch{return null}},
+};
+
+// ── Generate a unique library ID ───────────────────────
+function genId(){
+  return 'RL-'+Array.from(crypto.getRandomValues(new Uint8Array(5))).map(b=>b.toString(36).padStart(2,'0')).join('').toUpperCase().slice(0,8);
+}
+
+// ── SHA-256 hash ───────────────────────────────────────
+async function hashPw(pw){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(SALT+pw+SALT.split('').reverse().join('')));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+// ── IndexedDB ──────────────────────────────────────────
+function openDB(){
+  return new Promise((r,j)=>{
+    const req=indexedDB.open(DBNAME,1);
+    req.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains('videos'))d.createObjectStore('videos',{keyPath:'id'})};
+    req.onsuccess=e=>{db=e.target.result;r()};
+    req.onerror=j;
+  });
+}
+const dbTx=m=>db.transaction('videos',m).objectStore('videos');
+const dbAll=()=>new Promise((r,j)=>{const q=dbTx('readonly').getAll();q.onsuccess=()=>r(q.result);q.onerror=j});
+const dbPut=v=>new Promise((r,j)=>{const q=dbTx('readwrite').put(v);q.onsuccess=r;q.onerror=j});
+const dbDel=id=>new Promise((r,j)=>{const q=dbTx('readwrite').delete(id);q.onsuccess=r;q.onerror=j});
+
+// ── Shared metadata store (for sharing library listings) ──
+async function pushMeta(){
+  if(!myLibId||isReadOnly)return;
+  const meta=videos.map(v=>({id:v.id,name:v.name,size:v.size,dur:v.dur,folder:v.folder,added:v.added,type:v.type||''}));
+  try{await stor.set('rl:meta:'+myLibId,JSON.stringify({folders,videos:meta,updated:Date.now()}),true)}catch(e){console.warn('pushMeta',e)}
+}
+
+async function pullMeta(libId){
+  try{
+    const r=await stor.get('rl:meta:'+libId,true);
+    if(!r?.value)return null;
+    return JSON.parse(r.value);
+  }catch{return null}
+}
+
+// ── Shareable URL helpers ──────────────────────────────
+function getShareUrl(libId){
+  const base=location.href.split('#')[0];
+  return base+'#'+libId;
+}
+function getLibIdFromUrl(){
+  const h=location.hash.replace('#','').trim();
+  return h.startsWith('RL-')?h:null;
+}
+
+function copyLibId(){
+  navigator.clipboard?.writeText(myLibId||'').catch(()=>{});
+  $('shareOk').textContent='Library code copied!';
+  setTimeout(()=>$('shareOk').textContent='',2000);
+}
+function copyShareUrl(){
+  const url=getShareUrl(myLibId);
+  navigator.clipboard?.writeText(url).catch(()=>{});
+  $('shareOk').textContent='Link copied to clipboard!';
+  setTimeout(()=>$('shareOk').textContent='',2500);
+}
+
+function showShare(){
+  $('shareCodeBox').textContent=myLibId||'—';
+  $('shareUrlBox').textContent=getShareUrl(myLibId||'');
+  $('viewCode').value='';$('shareErr').textContent='';$('shareOk').textContent='';
+  show('mShare');
+}
+
+async function goToLibrary(){
+  const code=$('viewCode').value.trim().toUpperCase();
+  if(!code){$('shareErr').textContent='Enter a library code';return}
+  if(!code.startsWith('RL-')){$('shareErr').textContent='Invalid library code';return}
+  $('shareErr').textContent='Loading...';
+  const data=await pullMeta(code);
+  if(!data){$('shareErr').textContent='Library not found or not shared yet';return}
+  closeM('mShare');
+  loadReadOnlyLibrary(code,data);
+}
+
+async function joinLibrary(){
+  const code=$('joinCode').value.trim().toUpperCase();
+  if(!code){$('sErr').textContent='Enter a library code';return}
+  $('sErr').textContent='Loading...';
+  const data=await pullMeta(code);
+  if(!data){$('sErr').textContent='Library not found';return}
+  $('sS').classList.remove('v');
+  $('sA').classList.add('v');
+  loadReadOnlyLibrary(code,data);
+}
+
+function loadReadOnlyLibrary(libId,data){
+  isReadOnly=true;
+  viewingLibId=libId;
+  videos=data.videos||[];
+  folders=data.folders||['Uncategorized'];
+  // No blob URLs for remote libraries
+  $('roBanner').style.display='flex';
+  $('roLibId').textContent=libId;
+  $('uploadBtn').style.display='none';
+  $('lockSt').textContent='👁 Read-only view';
+  render();
+}
+
+function exitReadOnly(){
+  isReadOnly=false;
+  viewingLibId=null;
+  $('roBanner').style.display='none';
+  $('uploadBtn').style.display='flex';
+  updateLock();
+  loadOwnLibrary();
+}
+
+async function loadOwnLibrary(){
+  try{
+    const fr=await stor.get('rl:f:'+myLibId);
+    if(fr?.value){try{folders=JSON.parse(fr.value)}catch{}}
+    const rows=await dbAll();
+    videos=[];
+    for(const row of rows){
+      const meta={id:row.id,name:row.name,size:row.size,dur:row.dur,folder:row.folder,added:row.added,type:row.type||''};
+      videos.push(meta);
+      if(row.blob){try{urlCache[row.id]=URL.createObjectURL(row.blob)}catch{}}
+    }
+  }catch(e){console.warn(e)}
+  render();
+}
+
+// ── Init ───────────────────────────────────────────────
+async function init(){
+  try{
+    await openDB();
+    // Check if lib exists
+    const idR=await stor.get('rl:id');
+    const hrR=idR?await stor.get('rl:h:'+idR.value):null;
+
+    // Check URL for shared library
+    const urlLib=getLibIdFromUrl();
+
+    if(!idR){
+      // First time ever
+      hide('sL');
+      if(urlLib){
+        // Pre-fill join code
+        $('joinCode').value=urlLib;
+      }
+      $('sS').classList.add('v');
+      return;
+    }
+
+    myLibId=idR.value;
+    $('libIdBadge').textContent=myLibId;
+
+    if(!hrR){
+      // Has ID but no password somehow (edge case)
+      hide('sL');$('sS').classList.add('v');return;
+    }
+
+    // Load own library first
+    await loadOwnLibrary();
+
+    hide('sL');$('sA').classList.add('v');
+
+    // If URL points to a different library, auto-load it
+    if(urlLib&&urlLib!==myLibId){
+      const data=await pullMeta(urlLib);
+      if(data)loadReadOnlyLibrary(urlLib,data);
+    }
+
+  }catch(e){console.warn('init',e);hide('sL');$('sS').classList.add('v')}
+}
+
+// ── Setup ──────────────────────────────────────────────
+async function doSetup(){
+  const pw=$('sPw').value,pw2=$('sPw2').value;
+  if(!pw){$('sErr').textContent='Enter a password';return}
+  if(pw.length<4){$('sErr').textContent='Min 4 characters';return}
+  if(pw!==pw2){$('sErr').textContent='Passwords do not match';return}
+  $('sErr').textContent='Creating your library...';
+  myLibId=genId();
+  await stor.set('rl:id',myLibId);
+  await stor.set('rl:h:'+myLibId,await hashPw(pw));
+  unlocked=true;
+  $('libIdBadge').textContent=myLibId;
+  $('sS').classList.remove('v');$('sA').classList.add('v');
+  updateLock();render();pushMeta();
+}
+
+// ── Auth ───────────────────────────────────────────────
+async function doAuth(){
+  const pw=$('aPw').value;
+  if(!pw){$('aErr').textContent='Enter your password';return}
+  const h=await hashPw(pw);
+  const hr=await stor.get('rl:h:'+myLibId);
+  if(!hr||h!==hr.value){$('aErr').textContent='Incorrect password';$('aPw').value='';return}
+  unlocked=true;$('aPw').value='';$('aErr').textContent='';
+  closeM('mAuth');updateLock();
+  if(pending)showUpModal();else $('fi').click();
+}
+function updateLock(){
+  const el=$('lockSt');
+  if(isReadOnly){el.textContent='👁 Read-only view';el.className='';return}
+  el.textContent=unlocked?'🔓 Upload unlocked':'🔒 Upload locked';
+  el.className=unlocked?'un':'';
+}
+
+// ── Upload ─────────────────────────────────────────────
+function startUpload(){
+  if(isReadOnly)return;
+  if(!unlocked){$('aErr').textContent='';show('mAuth');return}
+  $('fi').click();
+}
+function handleFiles(files){
+  if(!files?.length)return;
+  // Accept ALL video types
+  pending=Array.from(files).filter(f=>f.type.startsWith('video/')||/\.(mp4|mov|avi|mkv|webm|m4v|wmv|flv|ogv|3gp|ts|mts|m2ts|vob|asf|rm|rmvb|divx)$/i.test(f.name));
+  if(!pending.length)return;
+  if(!unlocked){show('mAuth');return}
+  showUpModal();
+}
+function showUpModal(){
+  const n=pending.length;
+  $('upTitle').textContent='Upload '+n+' File'+(n>1?'s':'');
+  $('upInfo').textContent=n===1?pending[0].name:n+' video files selected';
+  $('upFold').innerHTML=folders.map(f=>`<option>${f}</option>`).join('');
+  hide('upProg');show('upBtn','block');
+  show('mUp');
+}
+async function confirmUpload(){
+  if(!pending)return;
+  const folder=$('upFold').value;
+  $('upBtn').style.display='none';show('upProg','block');
+  for(let i=0;i<pending.length;i++){
+    const f=pending[i];
+    $('upStat').textContent=`${i+1}/${pending.length}: ${f.name.slice(0,32)}`;
+    $('upBar').style.width=Math.round((i/pending.length)*100)+'%';
+    await new Promise(res=>{
+      const tmpVid=document.createElement('video');
+      const blobUrl=URL.createObjectURL(f);
+      tmpVid.src=blobUrl;
+      const finish=async(dur)=>{
+        const id=Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+        const ext=f.name.split('.').pop().toLowerCase();
+        const meta={id,name:f.name.replace(/\.[^.]+$/,''),size:f.size,dur:dur||0,folder,added:Date.now(),type:ext};
+        videos.push(meta);
+        urlCache[id]=blobUrl;
+        const blob=new Blob([f],{type:f.type||'video/mp4'});
+        try{await dbPut({...meta,blob})}catch(e){console.warn('IDB save failed',e)}
+        res();
+      };
+      tmpVid.onloadedmetadata=()=>finish(tmpVid.duration);
+      tmpVid.onerror=()=>finish(0);
+      setTimeout(()=>finish(0),3000);
+    });
+  }
+  $('upBar').style.width='100%';$('upStat').textContent='Done!';
+  pending=null;$('fi').value='';
+  await pushMeta();
+  setTimeout(()=>{closeM('mUp');render()},400);
+}
+
+// ── Player ─────────────────────────────────────────────
+function openVideo(id){
+  const v=videos.find(x=>x.id===id);if(!v)return;
+  curId=id;delConf=false;
+  $('pName').textContent=v.name+(v.type?'.'+v.type:'');
+  $('pMeta').textContent=fmtD(v.dur)+' · '+fmt(v.size||0)+' · '+v.folder+(v.type?' · '+v.type.toUpperCase():'');
+  $('delBtn').textContent='Delete';$('delBtn').classList.remove('conf');
+  $('delBtn').style.display=isReadOnly?'none':'block';
+  const vid=$('pVid');
+  const url=urlCache[id]||null;
+  if(url){
+    vid.src=url;vid.style.display='block';
+    vid.load();vid.play().catch(()=>{});
+    const ua=document.querySelector('#mPlay .unavail');if(ua)ua.style.display='none';
+  }else{
+    vid.src='';vid.style.display='none';
+    let ua=document.querySelector('#mPlay .unavail');
+    if(!ua){ua=document.createElement('div');ua.className='unavail';ua.style.cssText='width:100%;aspect-ratio:16/9;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px';ua.innerHTML='<svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="#52526a" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg><p style="color:#52526a;font-size:11px;margin-top:4px">'+(isReadOnly?'Video is on the owner\'s device':'File not in memory — re-upload to play')+'</p>';$('mPlay .pb')||($('pVid').parentElement.insertBefore(ua,$('pVid')))}
+    ua.style.display='flex';
+  }
+  show('mPlay');
+}
+
+async function delCurrent(){
+  if(!curId||isReadOnly)return;
+  if(!delConf){
+    delConf=true;$('delBtn').textContent='Confirm?';$('delBtn').classList.add('conf');
+    setTimeout(()=>{if(delConf){delConf=false;$('delBtn').textContent='Delete';$('delBtn').classList.remove('conf')}},2500);
+    return;
+  }
+  try{await dbDel(curId)}catch{}
+  const url=urlCache[curId];if(url)URL.revokeObjectURL(url);delete urlCache[curId];
+  const i=videos.findIndex(v=>v.id===curId);if(i>-1)videos.splice(i,1);
+  await pushMeta();
+  closeM('mPlay');render();
+}
+
+// ── Folders ────────────────────────────────────────────
+async function createFolder(){
+  const n=$('foldName').value.trim();
+  if(!n){$('foldErr').textContent='Enter a name';return}
+  if(folders.includes(n)){$('foldErr').textContent='Already exists';return}
+  folders.push(n);
+  try{await stor.set('rl:f:'+myLibId,JSON.stringify(folders))}catch{}
+  await pushMeta();
+  $('foldName').value='';$('foldErr').textContent='';
+  closeM('mFold');render();
+}
+
+// ── Modals ─────────────────────────────────────────────
+function closeM(id){
+  const el=$(id);if(!el)return;el.style.display='none';el.classList&&el.classList.remove('v');
+  if(id==='mPlay'){const v=$('pVid');v.pause();v.src='';curId=null;delConf=false}
+  if(id==='mAuth'){$('aPw').value='';$('aErr').textContent=''}
+  if(id==='mUp'){pending=null;$('fi').value=''}
+  if(id==='mFold'){$('foldName').value='';$('foldErr').textContent=''}
+}
+document.querySelectorAll('.mb').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeM(m.id)}));
+
+// ── Drag/Drop ──────────────────────────────────────────
+document.addEventListener('dragover',e=>e.preventDefault());
+document.addEventListener('drop',e=>{
+  e.preventDefault();
+  if(isReadOnly)return;
+  const files=e.dataTransfer?.files;if(!files?.length)return;
+  pending=Array.from(files).filter(f=>f.type.startsWith('video/')||/\.(mp4|mov|avi|mkv|webm|m4v|wmv|flv|ogv|3gp)$/i.test(f.name));
+  if(!pending.length)return;
+  if(!unlocked)show('mAuth');else showUpModal();
+});
+
+// ── Render ─────────────────────────────────────────────
+function getFilt(){
+  const q=$('srIn').value.toLowerCase();
+  let vs=videos.filter(v=>v.name.toLowerCase().includes(q)||v.folder.toLowerCase().includes(q)||(v.type||'').toLowerCase().includes(q));
+  if(sec==='recent'){const c=Date.now()-7*864e5;vs=vs.filter(v=>v.added>c)}
+  else if(sec!=='all')vs=vs.filter(v=>v.folder===sec);
+  if(filt==='short')vs=vs.filter(v=>v.dur>0&&v.dur<120);
+  if(filt==='long')vs=vs.filter(v=>v.dur>=120);
+  return vs;
+}
+function render(){
+  const vs=getFilt();
+  $('vCnt').textContent=vs.length+' video'+(vs.length!==1?'s':'');
+  $('secTitle').textContent=sec==='all'?'All Videos':sec==='recent'?'Recent':sec;
+  renderStats(vs);renderSBF();renderFolderRow();renderVids(vs);
+  if(!isReadOnly)tog('dz',videos.length===0);
+}
+function renderStats(vs){
+  const ts=vs.reduce((a,v)=>a+(v.size||0),0),td=vs.reduce((a,v)=>a+(v.dur||0),0);
+  $('stats').innerHTML=
+    `<div class="stc"><div class="sv">${vs.length}</div><div class="sl">Videos</div></div>`+
+    `<div class="stc"><div class="sv">${fmt(ts)}</div><div class="sl">Storage</div></div>`+
+    `<div class="stc"><div class="sv">${fmtD(td)}</div><div class="sl">Runtime</div></div>`+
+    `<div class="stc"><div class="sv">${[...new Set(vs.map(v=>v.folder))].length}</div><div class="sl">Folders</div></div>`;
+}
+function renderSBF(){
+  const cnt={};folders.forEach(f=>cnt[f]=videos.filter(v=>v.folder===f).length);
+  $('sbFolders').innerHTML=folders.map(f=>`
+    <div class="ni${sec===f?' on':''}" onclick="setSec(${JSON.stringify(f)},this)">
+      <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      ${f}<span style="margin-left:auto;font-size:10px;opacity:.4">${cnt[f]||''}</span>
+    </div>`).join('');
+}
+function renderFolderRow(){
+  const cnt={};folders.forEach(f=>cnt[f]=videos.filter(v=>v.folder===f).length);
+  $('fRow').innerHTML=folders.map(f=>`
+    <div class="fc${sec===f?' on':''}" onclick="setSec(${JSON.stringify(f)},this)">
+      <span style="font-size:14px;line-height:1">${FICON[f]||'📁'}</span>
+      <div><div class="fn">${f}</div><div class="fct">${cnt[f]} video${cnt[f]!==1?'s':''}</div></div>
+    </div>`).join('')+(isReadOnly?'':
+    `<button class="fadd" onclick="show('mFold')">+ New folder</button>`);
+}
+function renderVids(vs){
+  const c=$('vCon');
+  if(!vs.length&&videos.length){c.innerHTML='<div class="emp"><h3>No Results</h3><p>Try a different search or filter.</p></div>';return}
+  if(!vs.length){c.innerHTML='';return}
+  const typeColor={'mp4':'#9d72f8','mov':'#5e62e8','avi':'#34d399','mkv':'#fbbf24','webm':'#22d3ee','wmv':'#f87171'};
+  if(vm==='grid'){
+    c.innerHTML='<div class="vg">'+vs.map(v=>{
+      const bg=BGS[v.name.charCodeAt(0)%BGS.length];
+      const ini=v.name.split(/[\s\-_]+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase()||'VD';
+      const hasUrl=!!urlCache[v.id];
+      const tc=typeColor[v.type]||'#52526a';
+      return`<div class="vc" onclick="openVideo(${JSON.stringify(v.id)})">
+        <div class="th">
+          <div class="tgb" style="background:linear-gradient(135deg,${bg} 0%,#09090f 100%)"><span class="tl">${ini}</span></div>
+          <div class="pov"><div class="pc"><svg width="11" height="11" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
+          ${v.dur?`<span class="dur">${fmtD(v.dur)}</span>`:''}
+          ${v.type?`<span class="vttype" style="color:${tc}">${v.type}</span>`:''}
+        </div>
+        <div class="cb">
+          <div class="ct" title="${v.name}">${v.name}</div>
+          <div class="cm"><span class="cs">${fmt(v.size||0)}</span><span class="tag ${FTAG[v.folder]||'tM'}">${v.folder}</span></div>
+          <div class="cdt">${fmtDt(v.added)}</div>
+        </div>
+      </div>`;
+    }).join('')+'</div>';
+  }else{
+    c.innerHTML='<div class="vl">'+vs.map(v=>{
+      const ini=v.name.split(/[\s\-_]+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase()||'VD';
+      return`<div class="vli" onclick="openVideo(${JSON.stringify(v.id)})">
+        <div class="lth"><span style="font-family:'Bebas Neue',sans-serif;font-size:10px;color:#38384e">${ini}</span></div>
+        <span class="ln" title="${v.name}">${v.name}</span>
+        <span class="lf"><span class="tag ${FTAG[v.folder]||'tM'}">${v.folder}</span></span>
+        <span class="ld">${fmtD(v.dur)}</span>
+        <span class="lsz">${fmt(v.size||0)}</span>
+        ${v.type?`<span style="font-size:10px;color:var(--mu);min-width:30px;text-align:right;text-transform:uppercase">${v.type}</span>`:''}
+      </div>`;
+    }).join('')+'</div>';
+  }
+}
+
+function setSec(s,el){sec=s;document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));el.classList.add('on');render()}
+function setFilt(f,el){filt=f;document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));el.classList.add('on');render()}
+function setVM(m){vm=m;$('vbG').classList.toggle('on',m==='grid');$('vbL').classList.toggle('on',m==='list');renderVids(getFilt())}
+
+function fmt(b){return b>1e9?(b/1e9).toFixed(1)+'GB':b>1e6?(b/1e6).toFixed(1)+'MB':(b/1024|0)+'KB'}
+function fmtD(s){if(!s)return'—';return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0')}
+function fmtDt(ts){return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+
+init();
+</script>
